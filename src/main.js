@@ -4,9 +4,10 @@ import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import env from './env'
 
 // 根据前端的跨域方式做调整
-axios.defaults.baseURL = '/api'
+axios.defaults.baseURL = env.baseURL
 axios.defaults.timeout = 8000
 // 请求拦截
 axios.interceptors.response.use(function (response) {

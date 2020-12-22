@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../pages/home.vue'
 import Index from '../pages/index.vue'
 import Product from '../pages/product.vue'
+import Detail from '../pages/detail.vue'
 import Cart from '../pages/cart.vue'
 import Order from '../pages/order.vue'
 import OrderList from '../pages/orderList.vue'
@@ -31,8 +32,8 @@ const routes = [
       },
       {
         path: '/detail',
-        name: 'product',
-        component: Product
+        name: 'detail',
+        component: Detail
       }
     ]
   },
@@ -40,11 +41,6 @@ const routes = [
     path: '/cart',
     name: 'cart',
     component: Cart
-  },
-  {
-    path: '/order',
-    name: 'order',
-    component: Order
   },
   {
     path: '/order',

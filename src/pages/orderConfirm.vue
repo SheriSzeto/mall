@@ -1,11 +1,11 @@
 <template>
   <div>
-    detail
+    orderConfirm
   </div>
 </template>
 
 <script>
 export default {
-  name: 'detail'
+  name: 'order-confirm'
 }
 </script>

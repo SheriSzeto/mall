@@ -37,6 +37,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
     "vue-awesome-swiper": "^4.1.1",

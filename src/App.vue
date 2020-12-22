@@ -4,6 +4,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'app',
+  mounted () {
+    this.axios.get('/api/user/login').then(res => {
+      console.log('res', res)
+    })
+  }
+}
+</script>
+
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

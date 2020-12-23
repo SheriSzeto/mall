@@ -6,12 +6,12 @@ import router from './router'
 import store from './store'
 // import env from './env'
 
-const MOCK = true
+const MOCK = false
 if (MOCK) {
   require('./mock/api') // require不是预加载，是由上至下执行才会加载，import会预加载，会一直存在于内存中
 }
 // 根据前端的跨域方式做调整
-// axios.defaults.baseURL = env.baseURL // 用mock要注释掉
+axios.defaults.baseURL = '/api'// env.baseURL // 用mock要注释掉
 axios.defaults.timeout = 8000
 // 请求拦截
 axios.interceptors.response.use(function (response) {

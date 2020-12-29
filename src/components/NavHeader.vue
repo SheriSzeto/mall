@@ -191,9 +191,7 @@ export default {
       })
         .then(res => {
           console.log('res', res)
-          if (res.list.length >= 6) {
-            this.productList = res.list.slice(0, 6)
-          }
+          this.productList = res.list
         })
     },
     goToCart () {

@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import orderHeader from '@/components/OrderHeader'
-import navFooter from '@/components/NavFooter'
+import OrderHeader from '@/components/OrderHeader'
+import NavFooter from '@/components/NavFooter'
 
 export default {
   name: 'order',
   components: {
-    orderHeader,
-    navFooter
+    OrderHeader,
+    NavFooter
   }
 
 }

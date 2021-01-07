@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueLazyload from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -20,12 +22,19 @@ axios.interceptors.response.use(function (response) {
     return res.data
   } else if (res.status === 10) { // 未登录
     window.location.href = '/#/login'
+    return Promise.reject(res)
   } else {
     alert(res.msg)
   }
+}, (error) => {
+  return Promise.reject(error)
 })
 
 Vue.use(VueAxios, axios)
+Vue.use(VueLazyload, {
+  loading: '/imgs/loading-svg/loading-bars.svg'
+})
+Vue.use(VueCookie)
 Vue.config.productionTip = false
 
 new Vue({

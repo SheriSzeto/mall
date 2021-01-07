@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../pages/home.vue'
+import Login from '../pages/login.vue'
 import Index from '../pages/index.vue'
 import Product from '../pages/product.vue'
 import Detail from '../pages/detail.vue'
@@ -38,6 +39,11 @@ const routes = [
     ]
   },
   {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
     path: '/cart',
     name: 'cart',
     component: Cart
@@ -72,7 +78,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

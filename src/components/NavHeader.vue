@@ -10,9 +10,9 @@
         </div>
         <div class="topbar-user">
           <a href="javascript;" v-if="username">{{ username }}</a>
-          <a href="javascript;" v-else @click="login">登录</a>
+          <a v-else @click="login">登录</a>
           <a href="javascript;" v-if="username">我的订单</a>
-          <a href="javascript;" class="my-cart" v-else @click="goToCart"><span class="icon-cart"></span>购物车</a>
+          <a class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车{{cartCount}}</a>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
                 <li class="product" v-for="(item, index) in productList" :key="index">
                   <a :href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
-                      <img :src="item.mainImage" :alt="item.subtitle" />
+                      <img v-lazy="item.mainImage" :alt="item.subtitle" />
                     </div>
                     <div class="pro-name">{{ item.name }}</div>
                     <div class="pro-price">{{ item.price }}</div>
@@ -38,7 +38,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="/imgs/nav-img/nav-1.png" alt="" />
+                      <img v-lazy="'/imgs/nav-img/nav-1.png'" alt="" />
                     </div>
                     <div class="pro-name">小米CC9</div>
                     <div class="pro-price">1799元</div>
@@ -161,13 +161,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'nav-header',
   data () {
     return {
-      username: 'jack',
       productList: []
     }
+  },
+  computed: {
+    ...mapState(['username', 'cartCount'])
   },
   filters: {
     currency (value) {
@@ -180,7 +184,7 @@ export default {
   },
   methods: {
     login () {
-      this.$router.push('/#/login')
+      this.$router.push('/login')
     },
     getProductList () {
       this.axios.get('/products', {
@@ -202,7 +206,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/base.scss";
 @import "../assets/scss/mixin.scss";
 @import "../assets/scss/config.scss";
 .header {

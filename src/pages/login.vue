@@ -68,7 +68,7 @@ export default {
         password: 'sheri123',
         email: 'sheri@163.com'
       }).then(() => {
-        alert('注册成功')
+        this.$message({ message: '注册成功', type: 'success' })
       })
     }
   }

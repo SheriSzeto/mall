@@ -9,9 +9,10 @@
           <a href="javascript;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript;" v-if="username">{{ username }}</a>
+          <a v-if="username">{{ username }}</a>
           <a v-else @click="login">登录</a>
-          <a href="javascript;" v-if="username">我的订单</a>
+          <a v-if="username" @click="logout">退出</a>
+          <a href="/#/order/list" v-if="username">我的订单</a>
           <a class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车{{cartCount}}</a>
         </div>
       </div>
@@ -161,7 +162,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'nav-header',
@@ -181,8 +182,13 @@ export default {
   },
   mounted () {
     this.getProductList()
+    const params = this.$route.params
+    if (params && params.from === 'login') {
+      this.getCartCount()
+    }
   },
   methods: {
+    ...mapActions(['saveUserName', 'saveCartCount']),
     login () {
       this.$router.push('/login')
     },
@@ -198,14 +204,27 @@ export default {
           this.productList = res.list
         })
     },
+    getCartCount () {
+      this.axios.get('/carts/products/sum').then((res = 0) => {
+        this.saveCartCount(res)
+      })
+    },
     goToCart () {
       this.$router.push('/cart')
+    },
+    logout () {
+      this.axios.post('/user/logout').then(() => {
+        this.$message({ message: '退出成功', type: 'success' })
+        this.$cookie.set('userId', '', { expires: '-1' })
+        this.saveUserName('')
+        this.saveCartCount(0)
+      })
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../assets/scss/mixin.scss";
 @import "../assets/scss/config.scss";
 .header {
@@ -220,6 +239,7 @@ export default {
         display: inline-block;
         color: #b0b0b0;
         margin-right: 17px;
+        cursor: pointer;
       }
       .my-cart {
         width: 110px;

@@ -1,5 +1,5 @@
 # 项目流程
-https://cdn.jsdelivr.net/gh//SheriSzeto/image@main/vue全家桶商城.png
+![Image text](https://cdn.jsdelivr.net/gh//SheriSzeto/image@main/vue全家桶商城.png)
 
 # mall
 
